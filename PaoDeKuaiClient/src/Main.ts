@@ -1,4 +1,6 @@
 import GameConfig from "./GameConfig";
+import Game from "./Game/Game";
+
 class Main {
 	constructor() {
 		//根据IDE设置初始化引擎		
@@ -25,12 +27,21 @@ class Main {
 
 	onVersionLoaded(): void {
 		//激活大小图映射，加载小图的时候，如果发现小图在大图合集里面，则优先加载大图合集，而不是小图
-		Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
+		Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.loadResource));
 	}
 
-	onConfigLoaded(): void {
-		//加载IDE指定的场景
-		GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
+	loadResource(): void {
+		// 加载资源
+		let resArr = [
+			{ url: "res/atlas/comp.atlas", type:Laya.Loader.ATLAS},
+            { url: "res/atlas/card.atlas", type: Laya.Loader.ATLAS },
+            { url: "res/atlas/avatar.atlas", type: Laya.Loader.ATLAS }
+		];
+
+		Laya.loader.load(resArr, Laya.Handler.create(this, () => {
+			let game = new Game();
+			game.begin();
+		}));
 	}
 }
 //激活启动类
