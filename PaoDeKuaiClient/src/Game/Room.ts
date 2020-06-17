@@ -34,10 +34,10 @@ export default class Room {
     public nowSeat: number;
 
     // 当前桌面上最大牌
-    public nowPokers: CardSet;
+    public nowCardSet: CardSet;
 
     // 当前自己选中的牌型
-    public myReadyPokers: CardSet;
+    public myReadyCardSet: CardSet;
 
     // 是否可操作选中牌，仅自己出牌阶段才可操作
     public canSelect: boolean = false;
@@ -48,8 +48,8 @@ export default class Room {
     constructor(game: Game) {
         this.game = game;
 
-        this.myReadyPokers = new CardSet();
-        this.nowPokers = new CardSet();
+        this.myReadyCardSet = new CardSet();
+        this.nowCardSet = new CardSet();
         this.leftPokerNum = this.rightPokerNum = 0;
     }
 
@@ -192,20 +192,20 @@ export default class Room {
     public checkOutPokers() {
         let game = this.game;
         //将选中的牌放入准备牌中
-        this.myReadyPokers.cards = [];
+        this.myReadyCardSet.cards = [];
         this.myPokers.forEach((poker, index, array) => {
             if (poker.isSelected) {
-                this.myReadyPokers.cards.push(poker.index);
+                this.myReadyCardSet.cards.push(poker.index);
             }
         });
         //计算牌型
-        this.myReadyPokers.type = game.cardLogic.calcuPokerType(this.myReadyPokers.cards);
+        this.myReadyCardSet.type = game.cardLogic.calcuPokerType(this.myReadyCardSet.cards);
 
         //计算牌头
-        this.myReadyPokers.header = game.cardLogic.calcPokerHeader(this.myReadyPokers.cards, this.myReadyPokers.type);
+        this.myReadyCardSet.header = game.cardLogic.calcPokerHeader(this.myReadyCardSet.cards, this.myReadyCardSet.type);
 
         //是否可出
-        if (game.cardLogic.canOut(this.nowPokers, this.myReadyPokers)) {
+        if (game.cardLogic.canOut(this.nowCardSet, this.myReadyCardSet, this.myPokers.length)) {
             game.roomView.outYes.visible = true;
         } else {
             game.roomView.outYes.visible = false;
@@ -221,10 +221,10 @@ export default class Room {
 
         let game = this.game;
 
-        if (game.cardLogic.canOut(this.nowPokers, this.myReadyPokers)) {
+        if (game.cardLogic.canOut(this.nowCardSet, this.myReadyCardSet, this.myPokers.length)) {
             let data = new Message();
             data.command = MsgCode.PLAYER_PLAYCARD;
-            data.content = { roomId: this.roomId, index: this.myInfo.seat, curCards: { type: this.myReadyPokers.type, header: this.myReadyPokers.header, cards: this.myReadyPokers.cards } };
+            data.content = { roomId: this.roomId, index: this.myInfo.seat, curCards: { type: this.myReadyCardSet.type, header: this.myReadyCardSet.header, cards: this.myReadyCardSet.cards } };
             game.socketManager.sendData(data, this.giveOutBack, this);
         }
     }
@@ -253,8 +253,8 @@ export default class Room {
             this.canSelect = false;
 
             //清除当前准备好的牌
-            this.myReadyPokers.cards = [];
-            this.myReadyPokers.type = CardType.ERROR;
+            this.myReadyCardSet.cards = [];
+            this.myReadyCardSet.type = CardType.ERROR;
 
             game.roomView.outYes.visible = false;
             game.roomView.outNo.visible = false;
@@ -295,7 +295,7 @@ export default class Room {
     // 展示出的牌
     public showOutPokers(seat: number, cards: any) {
         let game = this.game;
-        this.nowPokers = cards;
+        this.nowCardSet = cards;
         if (seat == this.myInfo.seat) {
             for (let i = 0; i < cards.cards.length; i++) {
                 let poker = game.poolManager.getPoker();
@@ -381,9 +381,9 @@ export default class Room {
 
     // 清空本轮出牌信息
     public roundPokerClear() {
-        this.nowPokers.cards = [];
-        this.nowPokers.header = 0;
-        this.nowPokers.type = CardType.INIT;
+        this.nowCardSet.cards = [];
+        this.nowCardSet.header = 0;
+        this.nowCardSet.type = CardType.INIT;
         for (let i = 1; i <= 3; i++) {
             this.removeOutPokers(i);
         }

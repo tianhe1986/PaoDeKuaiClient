@@ -8,6 +8,6 @@ export default class CardType {
     public static THREE_TWO = 4; //三带二
     public static STRAIGHT = 5; //顺子，不能顺到二
     public static THREE_ONE = 6; //三带一，仅最后出牌可出
-    public static CONNECT_THREE = 7; //连续三带二
+    public static CONNECT_THREE_TWO = 7; //连续三带二
     public static BOMB = 8; //炸弹
 }
