@@ -78,7 +78,7 @@ export default class Game {
         this.cardLogic = new CardLogic();
 
         this.matchView = new MatchView(this);
-        this.roomView = new RoomView();
+        this.roomView = new RoomView(this);
         Laya.stage.addChild(this.matchView);
     }
 
