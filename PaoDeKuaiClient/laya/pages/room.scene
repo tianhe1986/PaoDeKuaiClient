@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":3,
+    "selecteID":42,
     "searchKey":"View",
     "props":{"width":1280,"sceneColor":"#000000","height":720,"centerY":0,"centerX":0},
     "nodeParent":-1,
@@ -48,14 +48,13 @@
             "props":{"y":28,"x":28,"visible":false,"var":"leftSeat","top":28,"left":28},
             "nodeParent":2,
             "label":"leftSeat",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":20,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,avatar",
                     "props":{"width":100,"top":74,"skin":"comp/image.png","name":"avatar","left":22,"height":100},
@@ -69,7 +68,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Text",
                     "searchKey":"Text,nickname",
                     "props":{"y":181.75,"width":150,"text":"你是个肥肥","name":"nickname","fontSize":24,"align":"center"},
@@ -83,7 +81,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Text",
                     "searchKey":"Text,cardNum",
                     "props":{"y":62,"x":122,"text":"12","name":"cardNum","fontSize":24,"align":"center"},
@@ -97,13 +94,12 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,action",
                     "props":{"y":-1.25,"x":72,"name":"action"},
                     "nodeParent":20,
                     "label":"action",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -112,7 +108,7 @@
                         {
                             "type":"Line",
                             "searchKey":"Line",
-                            "props":{"y":0,"x":0,"toY":35,"toX":0,"lineWidth":1,"lineColor":"#ff0000"},
+                            "props":{"y":0,"x":0,"toY":35,"toX":0,"lineWidth":4,"lineColor":"#ff0000"},
                             "nodeParent":18,
                             "label":"Line",
                             "isDirectory":false,
@@ -125,7 +121,7 @@
                         {
                             "type":"Lines",
                             "searchKey":"Lines",
-                            "props":{"y":-30,"x":4,"points":"-19,55,-4,68,8,53","lineWidth":1,"lineColor":"#ff0000"},
+                            "props":{"y":-30,"x":4,"points":"-19,55,-4,68,8,53","lineWidth":4,"lineColor":"#ff0000"},
                             "nodeParent":18,
                             "label":"Lines",
                             "isDirectory":false,
@@ -195,7 +191,7 @@
                     "props":{"y":-1.25,"x":72,"name":"action"},
                     "nodeParent":21,
                     "label":"action",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -204,7 +200,7 @@
                         {
                             "type":"Line",
                             "searchKey":"Line",
-                            "props":{"y":0,"x":0,"toY":35,"toX":0,"lineWidth":1,"lineColor":"#ff0000"},
+                            "props":{"y":0,"x":0,"toY":35,"toX":0,"lineWidth":4,"lineColor":"#ff0000"},
                             "nodeParent":25,
                             "label":"Line",
                             "isDirectory":false,
@@ -217,7 +213,7 @@
                         {
                             "type":"Lines",
                             "searchKey":"Lines",
-                            "props":{"y":-30,"x":4,"points":"-19,55,-4,68,8,53","lineWidth":1,"lineColor":"#ff0000"},
+                            "props":{"y":-30,"x":4,"points":"-19,55,-4,68,8,53","lineWidth":4,"lineColor":"#ff0000"},
                             "nodeParent":25,
                             "label":"Lines",
                             "isDirectory":false,
@@ -236,13 +232,14 @@
             "props":{"y":466,"x":91,"visible":false,"var":"mySeat","left":91,"bottom":48},
             "nodeParent":2,
             "label":"mySeat",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":28,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,avatar",
                     "props":{"width":100,"top":74,"skin":"avatar/1.png","name":"avatar","left":22,"height":100},
@@ -256,6 +253,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Text",
                     "searchKey":"Text,nickname",
                     "props":{"y":181.75,"width":150,"text":"你是个肥肥","name":"nickname","fontSize":24,"align":"center"},
@@ -269,6 +267,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Text",
                     "searchKey":"Text,cardNum",
                     "props":{"y":62,"x":122,"text":"12","name":"cardNum","fontSize":24,"align":"center"},
@@ -282,21 +281,23 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,action",
                     "props":{"y":-1.25,"x":72,"name":"action"},
                     "nodeParent":28,
                     "label":"action",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":32,
                     "child":[
                         {
+                            "x":45,
                             "type":"Line",
                             "searchKey":"Line",
-                            "props":{"y":0,"x":0,"toY":35,"toX":0,"lineWidth":1,"lineColor":"#ff0000"},
+                            "props":{"y":0,"x":0,"toY":35,"toX":0,"lineWidth":4,"lineColor":"#ff0000"},
                             "nodeParent":32,
                             "label":"Line",
                             "isDirectory":false,
@@ -307,9 +308,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Lines",
                             "searchKey":"Lines",
-                            "props":{"y":-30,"x":4,"points":"-19,55,-4,68,8,53","lineWidth":1,"lineColor":"#ff0000"},
+                            "props":{"y":-30,"x":4,"points":"-19,55,-4,68,8,53","lineWidth":4,"lineColor":"#ff0000"},
                             "nodeParent":32,
                             "label":"Lines",
                             "isDirectory":false,
@@ -435,20 +437,6 @@
         },
         {
             "x":15,
-            "type":"Button",
-            "searchKey":"Button,enter",
-            "props":{"width":190,"visible":false,"var":"enter","skin":"comp/button.png","labelSize":28,"label":"重新匹配","height":75,"centerY":0,"centerX":0},
-            "nodeParent":2,
-            "label":"enter",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":42,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Box",
             "searchKey":"Box,scorePanel",
             "props":{"y":78,"x":379,"visible":false,"var":"scorePanel"},
@@ -531,13 +519,27 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box,myCard",
-            "props":{"width":700,"var":"myCard","height":150,"centerX":0,"bottom":40},
+            "props":{"y":530,"x":290,"width":700,"var":"myCard","height":150,"centerX":0,"bottom":40},
             "nodeParent":2,
             "label":"myCard",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":49,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "searchKey":"Button,enter",
+            "props":{"width":190,"visible":false,"var":"enter","skin":"comp/button.png","labelSize":28,"label":"重新匹配","height":75,"centerY":123,"centerX":0},
+            "nodeParent":2,
+            "label":"enter",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":42,
             "child":[
                 ]
         }],
