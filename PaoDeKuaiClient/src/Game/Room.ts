@@ -59,6 +59,7 @@ export default class Room {
             case 0: //发牌了
                 let tempCards = content.cards.sort(function (a, b) { return b - a });
                 this.refreshMyPokers(tempCards);
+                this.leftPokerNum = this.rightPokerNum = 17;
                 this.showAllPokers();
                 break;
             case 1: //游戏中，出牌信息

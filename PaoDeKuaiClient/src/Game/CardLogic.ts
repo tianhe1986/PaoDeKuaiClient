@@ -82,7 +82,7 @@ export default class CardLogic {
                 return CardType.BOMB;
             } else if (maxSameNum == 3) { // 三张一样的，三带一
                 return CardType.THREE_ONE;
-            } else if (maxSameNum == 2 && diffNum == 2 && points[0] == points[3] && points[3] < 15) { // 两种点数，最多有两张一样的，且点数相连，姊妹对
+            } else if (maxSameNum == 2 && diffNum == 2 && points[0] + 1 == points[3] && points[3] < 15) { // 两种点数，最多有两张一样的，且点数相连，姊妹对
                 return CardType.CONNECT_DOUBLE;
             }
         } else if (len >= 5 && this.isStraight(points) && points[len - 1] < 15) { //这里直接判断所有顺子，免得后面大于5的时候都去判断是否是顺子
