@@ -68,6 +68,9 @@ export default class Room {
             case 2: //游戏结束，结算
                 this.gameOver(content);
                 break;
+            case 3: //惩罚
+                this.punish(content)
+                break;
             default:
                 break;
         }
@@ -139,6 +142,50 @@ export default class Room {
         (this.game.roomView.rightSeat.getChildByName("nickname") as Laya.Text).text = this.rightInfo.name;
         (this.game.roomView.rightSeat.getChildByName("avatar") as Laya.Image).skin = "avatar/" + this.rightInfo.seat + ".png";
         this.game.roomView.rightSeat.visible = true;
+    }
+
+    // 惩罚处理
+    public punish(content: any): void {
+        let game = this.game;
+        let seat = content.seat;
+        let cards = content.punishCard;
+        // 如果是自己，移除手中的牌
+        if (seat == this.myInfo.seat) {
+            // 惩罚的牌
+            let selectedMap = {};
+            cards.cards.forEach((poker, index, array) => {
+                selectedMap[poker] = 1;
+            });
+
+            let newPokers = new Array<Poker>();
+            this.myPokers.forEach((poker, index, array) => {
+                if (selectedMap[poker.index] != undefined) {
+                    poker.removeSelf();
+                    game.poolManager.recoverPoker(poker);
+                } else {
+                    newPokers.push(poker);
+                }
+            });
+            this.myPokers = newPokers;
+
+            let i = 0;
+            this.myPokers.forEach((poker, index, array) => {
+                poker.x = (i++) * 30;
+                poker.y = 0;
+            });
+
+            (game.roomView.mySeat.getChildByName("cardNum") as Laya.Text).text = '' + this.myPokers.length;
+        } else if (seat == this.leftInfo.seat) { // 否则，减少牌数
+            this.leftPokerNum -= cards.cards.length;
+            (game.roomView.leftSeat.getChildByName("cardNum") as Laya.Text).text = '' + this.leftPokerNum;
+        } else {
+            this.rightPokerNum -= cards.cards.length;
+            (game.roomView.rightSeat.getChildByName("cardNum") as Laya.Text).text = '' + this.rightPokerNum;
+        }
+
+        
+
+        // TODO： 飘过消息， 告知罚分
     }
 
     //出牌信息处理
