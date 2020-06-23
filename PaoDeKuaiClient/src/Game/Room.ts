@@ -69,7 +69,7 @@ export default class Room {
                 this.gameOver(content);
                 break;
             case 3: //惩罚
-                this.punish(content)
+                this.punish(content);
                 break;
             default:
                 break;
@@ -148,7 +148,9 @@ export default class Room {
     public punish(content: any): void {
         let game = this.game;
         let seat = content.seat;
-        let cards = content.punishCard;
+        let cards = content.punCard;
+
+        let punishName: string = ""
         // 如果是自己，移除手中的牌
         if (seat == this.myInfo.seat) {
             // 惩罚的牌
@@ -175,17 +177,30 @@ export default class Room {
             });
 
             (game.roomView.mySeat.getChildByName("cardNum") as Laya.Text).text = '' + this.myPokers.length;
+            punishName = this.myInfo.name;
         } else if (seat == this.leftInfo.seat) { // 否则，减少牌数
             this.leftPokerNum -= cards.cards.length;
             (game.roomView.leftSeat.getChildByName("cardNum") as Laya.Text).text = '' + this.leftPokerNum;
+            punishName = this.leftInfo.name;
         } else {
             this.rightPokerNum -= cards.cards.length;
             (game.roomView.rightSeat.getChildByName("cardNum") as Laya.Text).text = '' + this.rightPokerNum;
+            punishName = this.rightInfo.name;
         }
 
-        
+        //  飘过消息， 告知罚分
+        let txt = new Laya.Text();
+        txt.fontSize = 24;
+        txt.bold = true;
+        txt.color = "#1b1717";
+        game.roomView.addChild(txt);
+        txt.x = 340;
+        txt.y = 50;
+        txt.text = punishName + "有大牌不出，溺死并且额外扣" + content.score + "分";
 
-        // TODO： 飘过消息， 告知罚分
+        Laya.Tween.to(txt, {y: 250}, 2000, null, Laya.Handler.create(this, () => {
+            txt.removeSelf();
+        }));
     }
 
     //出牌信息处理
@@ -225,7 +240,7 @@ export default class Room {
 
         //如果是我，展示出牌与不出牌框
         let game = this.game;
-        if (seat == this.myInfo.seat) {
+        if (seat == this.myInfo.seat && ! game.roomView.scorePanel.visible) {
             this.canSelect = true;
             game.roomView.outYes.visible = false;
             game.roomView.outNo.visible = (cardType != CardType.INIT);
