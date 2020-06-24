@@ -11,6 +11,9 @@ export default class Room {
     //房间号
     public roomId: number;
 
+    //角色名
+    public playerNames = ["黑懵懂", "一介莽夫", "搞性活"];
+
     //自己信息
     public myInfo = { "seat": 0, "name": "", "pass": 0 }; //座位，昵称，是否跳过
 
@@ -111,22 +114,22 @@ export default class Room {
         this.roomId = content.roomId;
         for (let i = 0; i < players.length; i++) {
             if (this.game.gameId == players[i]) {
-                this.myInfo.name = (i + 1) + '号位：' + players[i];
+                this.myInfo.name = (i + 1) + '号位：' + this.playerNames[i];
                 this.myInfo.seat = i + 1;
                 if (i == 2) {
-                    this.rightInfo.name = '1号位：' + players[0];
+                    this.rightInfo.name = '1号位：' + this.playerNames[0];
                     this.rightInfo.seat = 1;
-                    this.leftInfo.name = '2号位：' + players[1];
+                    this.leftInfo.name = '2号位：' + this.playerNames[1];
                     this.leftInfo.seat = 2;
                 } else if (i == 0) {
-                    this.rightInfo.name = '2号位：' + players[1];
+                    this.rightInfo.name = '2号位：' + this.playerNames[1];
                     this.rightInfo.seat = 2;
-                    this.leftInfo.name = '3号位：' + players[2];
+                    this.leftInfo.name = '3号位：' + this.playerNames[2];
                     this.leftInfo.seat = 3;
                 } else {
-                    this.rightInfo.name = '3号位：' + players[2];
+                    this.rightInfo.name = '3号位：' + this.playerNames[2];
                     this.rightInfo.seat = 3;
-                    this.leftInfo.name = '1号位：' + players[0];
+                    this.leftInfo.name = '1号位：' + this.playerNames[0];
                     this.leftInfo.seat = 1;
                 }
             }
