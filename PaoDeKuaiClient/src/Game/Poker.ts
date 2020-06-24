@@ -27,6 +27,7 @@ export default class Poker extends Laya.Image {
     public reInit() {
         this.off(Laya.Event.CLICK, this, this.switchStatus);
         this.img = "card/bg.png";
+        this.isSelected = false;
     }
 
     public switchStatus() {
